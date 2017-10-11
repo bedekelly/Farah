@@ -3,7 +3,7 @@ Farah
 
 #### Subprocesses for Humans™
 
-Dealing with running external commands in Python can be a nightmare. Using `os.system(...)` is shouted down by the likes of StackOverflow commenters, but the replacement is the `subprocess` module: powerful, but not the easiest thing to jump into.
+Dealing with running external commands in Python can be a *nightmare*. Especially when you care about the output.
 
 Farah tries hard to give you easier access to the outputs—both stdout and stderr—of a running subprocess.
 
