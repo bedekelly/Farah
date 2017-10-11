@@ -3,8 +3,6 @@ import sys
 import tempfile
 import time
 
-import os
-
 
 def _get_text(buffer, callback, last_place, break_lines):
     text = buffer.read()
@@ -23,7 +21,7 @@ def _get_text(buffer, callback, last_place, break_lines):
 
 
 def _default_error_callback(error):
-    os.write(2, error.encode(sys.stderr.encoding))
+    sys.stderr.write(error + "\n")
 
 
 def run(cmd,
