@@ -3,6 +3,8 @@ import sys
 import tempfile
 import time
 
+import os
+
 
 def _get_text(buffer, callback, last_place, break_lines):
     text = buffer.read()
@@ -20,9 +22,20 @@ def _get_text(buffer, callback, last_place, break_lines):
     return text, last_place
 
 
-def run(cmd, output_callback, error_callback,
+def _default_error_callback(error):
+    os.write(2, error.encode(sys.stderr.encoding))
+
+
+def run(cmd,
+        output_callback=None,
+        error_callback=None,
         reaction_time=("Mo Farah's reaction time: ", 0.155)[1],
         break_lines=True):
+
+    if output_callback is None:
+        output_callback = print
+    if error_callback is None:
+        error_callback = _default_error_callback
 
     # Create temporary files for stdout and stderr to write to. These
     # need to be *real* files, otherwise the "fileno" attribute won't be
